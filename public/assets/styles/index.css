@@ -528,46 +528,78 @@ header.scrolled {
 	font-size: 0.85rem;
 }
 
+/* Core Values Image Container */
 .core-values-image-container {
 	position: relative;
-	margin: 2.5rem auto;
-	width: 250px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	text-align: center;
+	width: 100%;
+	max-width: 550px;
+	margin: 3rem auto 0;
+	border-radius: 0;
+	overflow: hidden;
+	box-shadow: none;
 }
 
-.core-values-image-container img {
+.core-values-image-container .about-image-2 {
 	width: 100%;
 	height: auto;
 	display: block;
-	margin: 0 auto;
-	border-radius: 8px;
+	object-fit: cover;
 }
 
 .core-values-description {
-	margin-top: 1rem;
-	padding: 0.5rem;
+	position: relative;
+	left: auto;
+	right: auto;
+	bottom: auto;
+	color: var(--primary);
+	padding: 1.5rem 1rem;
 	text-align: center;
-	width: 100%;
 }
 
 .core-values-description h3 {
-	color: var(--primary);
-	margin: 0 0 0.5rem;
-	font-size: 1.3rem;
+	font-size: 1.5rem;
+	margin-bottom: 0.5rem;
 }
 
 .core-values-description p {
-	color: #666;
-	margin: 0;
-	font-size: 0.9rem;
+	font-size: 1.1rem;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
 	.core-values-image-container {
-		max-width: 400px;
+		max-width: 100%;
+		margin: 2rem auto 0;
+	}
+
+	.core-values-description {
+		padding: 1.2rem 1rem;
+	}
+
+	.core-values-description h3 {
+		font-size: 1.25rem;
+	}
+
+	.core-values-description p {
+		font-size: 1rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.core-values-image-container {
+		margin: 1.5rem auto 0;
+		border-radius: 8px;
+	}
+
+	.core-values-description {
+		padding: 1rem;
+	}
+
+	.core-values-description h3 {
+		font-size: 1.1rem;
+	}
+
+	.core-values-description p {
+		font-size: 0.9rem;
 	}
 }
 
