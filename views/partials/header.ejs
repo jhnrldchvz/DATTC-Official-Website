@@ -1,84 +1,47 @@
-<!-- @format -->
-
-<!-- filepath: c:\Users\decha\Documents\GitHub\DATTC\views\partials\header.ejs -->
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0, maximum-scale=5.0"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-		/>
-		<link
-			rel="stylesheet"
-			href="/assets/styles/index.css"
-		/>
-		<link
-			rel="stylesheet"
-			href="/assets/styles/header.css"
-		/>
-		<link
-			rel="stylesheet"
-			href="/assets/styles/footer.css"
-		/>
-		<link
-			rel="stylesheet"
-			href="/assets/styles/contact-form.css"
-		/>
-		<title><%= typeof title !== 'undefined' ? title : 'Digital Arts Technology Training Center Inc.' %></title>
-	</head>
-	<body>
-		<!-- Header -->
-		<header>
-			<div class="container header-container">
-				<a
-					href="/"
-					class="logo-button"
-				>
-					<div class="logo">
-						<img
-							src="/assets/images/logos/DATTC_Logo.png"
-							alt="DATTC Logo"
-						/>
-						<div class="logo-text">
-							<h4>Digital Arts Technology</h4>
-							<h4>Training Center Inc.</h4>
-						</div>
-					</div>
-				</a>
-
-				<nav>
-					<ul id="navbar">
-						<li>
-							<a
-								href="#home"
-								class="active"
-							>
-								Home
-							</a>
-						</li>
-						<li><a href="#about">About</a></li>
-						<li><a href="#academics">Programs</a></li>
-						<li><a href="#trainers">Trainers</a></li>
-						<li><a href="#facilities">Facilities</a></li>
-						<li><a href="#partners">Partners</a></li>
-						<li><a href="#admissions">Admissions</a></li>
-						<li><a href="#testimonials">Testimonials</a></li>
-						<li><a href="#contact">Contact</a></li>
-					</ul>
-					<button
-						class="mobile-menu-btn"
-						aria-label="Toggle menu"
-					>
-						<i class="fas fa-bars"></i>
-					</button>
-				</nav>
+<!-- Header -->
+<header>
+	<div class="container header-container">
+		<a
+			href="/"
+			class="logo-button"
+		>
+			<div class="logo">
+				<img
+					src="/assets/images/logos/DATTC_Logo.png"
+					alt="DATTC Logo"
+				/>
+				<div class="logo-text">
+					<h4>Digital Arts Technology</h4>
+					<h4>Training Center Inc.</h4>
+				</div>
 			</div>
-		</header>
-		<script src="/js/script.js"></script>
-	</body>
-</html>
+		</a>
+
+		<nav>
+			<ul id="navbar">
+				<li>
+					<a
+						href="#home"
+						class="active"
+					>
+						Home
+					</a>
+				</li>
+				<li><a href="#about">About</a></li>
+				<li><a href="#academics">Programs</a></li>
+				<li><a href="#trainers">Trainers</a></li>
+				<li><a href="#facilities">Facilities</a></li>
+				<li><a href="#partners">Partners</a></li>
+				<li><a href="#admissions">Admissions</a></li>
+				<li><a href="#testimonials">Testimonials</a></li>
+				<li><a href="#contact">Contact</a></li>
+			</ul>
+			<button
+				class="mobile-menu-btn"
+				aria-label="Toggle menu"
+			>
+				<i class="fas fa-bars"></i>
+			</button>
+		</nav>
+	</div>
+</header>

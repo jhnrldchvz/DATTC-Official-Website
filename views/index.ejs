@@ -1,25 +1,24 @@
-<!-- @format -->
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta
 			name="viewport"
-			content="width=device-width, initial-scale=5.0"
+			content="width=device-width, initial-scale=1.0"
 		/>
 		<link
 			rel="icon"
-			href="assets/images/logos/DATTC_Logo.png"
+			href="/assets/images/logos/DATTC_Logo.png"
 			type="image/x-icon"
 		/>
 		<link
 			rel="shortcut icon"
-			href="assets/images/logos/DATTC_Logo.png"
+			href="/assets/images/logos/DATTC_Logo.png"
 			type="image/x-icon"
 		/>
 		<link
 			rel="apple-touch-icon"
-			href="assets/images/logos/DATTC_Logo.png"
+			href="/assets/images/logos/DATTC_Logo.png"
 		/>
 		<link
 			rel="stylesheet"
@@ -27,7 +26,19 @@
 		/>
 		<link
 			rel="stylesheet"
-			href="assets/styles/index.css"
+			href="/assets/styles/index.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="/assets/styles/header.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="/assets/styles/footer.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="/assets/styles/contact-from.css"
 		/>
 		<title>Digital Arts Technology Training Center Inc.</title>
 	</head>
@@ -123,11 +134,12 @@
 				<div class="why-choose-us">
 					<h2>Why Choose Us?</h2>
 					<p>Our commitment to excellence creates an exceptional educational experience.</p>
+
 					<div class="core-values-container">
 						<div class="core-value-card">
 							<div class="core-value-icon">
 								<img
-									src="assets/images/icons/vision-icon.png"
+									src="/assets/images/icons/vision-icon.png"
 									alt="Vision"
 								/>
 							</div>
@@ -138,7 +150,7 @@
 						<div class="core-value-card">
 							<div class="core-value-icon">
 								<img
-									src="assets/images/icons/mission-icon.png"
+									src="/assets/images/icons/mission-icon.png"
 									alt="Mission"
 								/>
 							</div>
@@ -149,7 +161,7 @@
 						<div class="core-value-card">
 							<div class="core-value-icon">
 								<img
-									src="assets/images/icons/objectives-icon.png"
+									src="/assets/images/icons/objectives-icon.png"
 									alt="Objectives"
 								/>
 							</div>
@@ -157,19 +169,147 @@
 							<p>We train students in programming, animation, systems servicing, and food services technology using cutting-edge innovations. This equips them to become globally competitive professionals in dynamic international environments.</p>
 						</div>
 					</div>
-					<div class="core-values-image-container">
-						<img
-							src="assets/images/core-values.png"
-							alt="Our Core Values"
-							class="about-image-2"
-							loading="lazy"
-						/>
-						<div class="core-values-description">
-							<h3>Our Values in Action</h3>
-							<p>Determined, Achievers, and Technology Driven, Transformative, Collaborative, and Innovative.</p>
+
+					<h2>What Drives Us Forward</h2>
+					<p>Our core values aren't just words — they're the foundation of everything we teach and everything our students become.</p>
+
+					<!-- ── DESKTOP: hub-and-spoke radial diagram ── -->
+					<div class="radial-wrap">
+						<div class="radial-infographic">
+
+							<!-- SVG layer: dashed orbit ring + spokes + junction dots -->
+							<svg class="radial-svg" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg">
+								<!-- Dashed orbit circle -->
+								<circle cx="320" cy="320" r="220"
+									fill="none" stroke="#3498db" stroke-width="1.5"
+									stroke-dasharray="6 6" opacity="0.35"/>
+
+								<!-- Spoke lines center-rim → satellite-rim -->
+								<line x1="320" y1="320" x2="320" y2="100" stroke="#3498db" stroke-width="2" opacity="0.4"/>  <!-- top        -->
+								<line x1="320" y1="320" x2="510" y2="210" stroke="#3498db" stroke-width="2" opacity="0.4"/>  <!-- top-right  -->
+								<line x1="320" y1="320" x2="510" y2="430" stroke="#3498db" stroke-width="2" opacity="0.4"/>  <!-- bot-right  -->
+								<line x1="320" y1="320" x2="320" y2="540" stroke="#3498db" stroke-width="2" opacity="0.4"/>  <!-- bottom     -->
+								<line x1="320" y1="320" x2="130" y2="430" stroke="#3498db" stroke-width="2" opacity="0.4"/>  <!-- bot-left   -->
+								<line x1="320" y1="320" x2="130" y2="210" stroke="#3498db" stroke-width="2" opacity="0.4"/>  <!-- top-left   -->
+
+								<!-- Center rim junction dots -->
+								<circle cx="320" cy="200" r="5" fill="#fff" stroke="#3498db" stroke-width="2"/>
+								<circle cx="424" cy="260" r="5" fill="#fff" stroke="#3498db" stroke-width="2"/>
+								<circle cx="424" cy="380" r="5" fill="#fff" stroke="#3498db" stroke-width="2"/>
+								<circle cx="320" cy="440" r="5" fill="#fff" stroke="#3498db" stroke-width="2"/>
+								<circle cx="216" cy="380" r="5" fill="#fff" stroke="#3498db" stroke-width="2"/>
+								<circle cx="216" cy="260" r="5" fill="#fff" stroke="#3498db" stroke-width="2"/>
+
+								<!-- Satellite rim junction dots -->
+								<circle cx="320" cy="180" r="4" fill="#fff" stroke="#2c3e50" stroke-width="1.5" opacity="0.5"/>
+								<circle cx="441" cy="250" r="4" fill="#fff" stroke="#2c3e50" stroke-width="1.5" opacity="0.5"/>
+								<circle cx="441" cy="390" r="4" fill="#fff" stroke="#2c3e50" stroke-width="1.5" opacity="0.5"/>
+								<circle cx="320" cy="460" r="4" fill="#fff" stroke="#2c3e50" stroke-width="1.5" opacity="0.5"/>
+								<circle cx="199" cy="390" r="4" fill="#fff" stroke="#2c3e50" stroke-width="1.5" opacity="0.5"/>
+								<circle cx="199" cy="250" r="4" fill="#fff" stroke="#2c3e50" stroke-width="1.5" opacity="0.5"/>
+							</svg>
+
+							<!-- Center node -->
+							<div class="center-node">
+								<h2>CORE<br>VALUES</h2>
+								<div class="center-divider"></div>
+								<span class="cn-label">D · A · T · T · C · I</span>
+							</div>
+
+							<!-- Satellite 0 — top: Determined -->
+							<div class="sat-node sat-0 accent-blue">
+								<div class="sat-icon"><i class="fas fa-fist-raised"></i></div>
+								<div class="sat-title">Determined</div>
+								<div class="sat-desc">Relentlessly mastering in-demand digital and technical skills.</div>
+							</div>
+
+							<!-- Satellite 1 — top-right: Achievers -->
+							<div class="sat-node sat-1 accent-red">
+								<div class="sat-icon"><i class="fas fa-trophy"></i></div>
+								<div class="sat-title">Achievers</div>
+								<div class="sat-desc">Graduates who excel and lead in their chosen fields.</div>
+							</div>
+
+							<!-- Satellite 2 — bot-right: Technology Driven -->
+							<div class="sat-node sat-2 accent-dark">
+								<div class="sat-icon"><i class="fas fa-microchip"></i></div>
+								<div class="sat-title">Technology Driven</div>
+								<div class="sat-desc">Programming, animation &amp; tech skills for global careers.</div>
+							</div>
+
+							<!-- Satellite 3 — bottom: Transformative -->
+							<div class="sat-node sat-3 accent-blue">
+								<div class="sat-icon"><i class="fas fa-people-arrows"></i></div>
+								<div class="sat-title">Transformative</div>
+								<div class="sat-desc">Shaping aspiring learners into globally competitive professionals.</div>
+							</div>
+
+							<!-- Satellite 4 — bot-left: Collaborative -->
+							<div class="sat-node sat-4 accent-red">
+								<div class="sat-icon"><i class="fas fa-lightbulb"></i></div>
+								<div class="sat-title">Collaborative</div>
+								<div class="sat-desc">Partnering with leading institutions for practical education.</div>
+							</div>
+
+							<!-- Satellite 5 — top-left: Innovative -->
+							<div class="sat-node sat-5 accent-dark">
+								<div class="sat-icon"><i class="fas fa-microchip"></i></div>
+								<div class="sat-title">Innovative</div>
+								<div class="sat-desc">Pioneering creative solutions in modern digital arts.</div>
+							</div>
+
 						</div>
-					</div>
-				</div>
+					</div><!-- /radial-wrap -->
+
+					<!-- ── MOBILE: stacked card grid ── -->
+					<div class="mobile-core-grid">
+
+						<!-- Hero center card -->
+						<div class="mobile-core-center">
+							<h2>CORE<br>VALUES</h2>
+							<div class="center-divider"></div>
+							<span class="cn-label">D · A · T · T · C · I</span>
+						</div>
+
+						<!-- 2-column card grid -->
+						<div class="mobile-core-cards">
+							<div class="mobile-core-card accent-blue">
+								<div class="mobile-core-icon"><i class="fas fa-fist-raised"></i></div>
+								<div class="mobile-core-title">Determined</div>
+								<div class="mobile-core-desc">Relentlessly mastering in-demand digital and technical skills.</div>
+							</div>
+
+							<div class="mobile-core-card accent-red">
+								<div class="mobile-core-icon"><i class="fas fa-trophy"></i></div>
+								<div class="mobile-core-title">Achievers</div>
+								<div class="mobile-core-desc">Graduates who excel and lead in their chosen fields.</div>
+							</div>
+
+							<div class="mobile-core-card accent-dark">
+								<div class="mobile-core-icon"><i class="fas fa-microchip"></i></div>
+								<div class="mobile-core-title">Technology Driven</div>
+								<div class="mobile-core-desc">Programming, animation &amp; tech skills for global careers.</div>
+							</div>
+
+							<div class="mobile-core-card accent-blue">
+								<div class="mobile-core-icon"><i class="fas fa-people-arrows"></i></div>
+								<div class="mobile-core-title">Transformative</div>
+								<div class="mobile-core-desc">Shaping aspiring learners into globally competitive professionals.</div>
+							</div>
+
+							<div class="mobile-core-card accent-red">
+								<div class="mobile-core-icon"><i class="fas fa-handshake"></i></div>
+								<div class="mobile-core-title">Collaborative</div>
+								<div class="mobile-core-desc">Partnering with leading institutions for practical education.</div>
+							</div>
+
+							<div class="mobile-core-card accent-dark">
+								<div class="mobile-core-icon"><i class="fas fa-lightbulb"></i></div>
+								<div class="mobile-core-title">Innovative</div>
+								<div class="mobile-core-desc">Pioneering creative solutions in modern digital arts.</div>
+							</div>
+						</div>
+					</div><!-- /mobile-core-grid -->
 			</div>
 		</section>
 
@@ -212,7 +352,7 @@
 					<div class="program-details">
 						<div class="program-image">
 							<img
-								src="assets/images/1.jpg"
+								src="/assets/images/1.jpg"
 								alt="High School"
 							/>
 						</div>
@@ -252,7 +392,7 @@
 					<div class="program-details">
 						<div class="program-image">
 							<img
-								src="assets/images/2.jpg"
+								src="/assets/images/2.jpg"
 								alt="Special Programs"
 							/>
 						</div>
@@ -304,7 +444,7 @@
 					<div class="program-details">
 						<div class="program-image">
 							<img
-								src="assets/images/animation-accreditation.png"
+								src="/assets/images/animation-accreditation.png"
 								alt="Accreditation Assessment"
 							/>
 						</div>
@@ -349,7 +489,7 @@
 				<div class="trainer-content">
 					<div class="trainer-image">
 						<img
-							src="assets/images/our-trainers-java.jpg"
+							src="/assets/images/our-trainers-java.jpg"
 							alt="Our Trainers Java"
 						/>
 					</div>
@@ -364,7 +504,7 @@
 				<div class="trainer-content reverse">
 					<div class="trainer-image">
 						<img
-							src="assets/images/our-goal.jpg"
+							src="/assets/images/our-goal.jpg"
 							alt="Our Goal"
 						/>
 					</div>
@@ -390,13 +530,13 @@
 				<div class="facilities-gallery">
 					<div class="gallery-item featured">
 						<img
-							src="assets/images/facilities/1-main-entrance.jpg"
+							src="/assets/images/facilities/1-main-entrance.jpg"
 							alt="Main Entrance"
 						/>
 					</div>
 					<div class="gallery-item featured">
 						<img
-							src="assets/images/facilities/2-receiving-area.png"
+							src="/assets/images/facilities/2-receiving-area.png"
 							alt="Receiving Area"
 						/>
 					</div>
@@ -404,37 +544,37 @@
 					<!-- Medium images -->
 					<div class="gallery-item">
 						<img
-							src="assets/images/facilities/3-lounge-area.png"
+							src="/assets/images/facilities/3-lounge-area.png"
 							alt="Lounge Area"
 						/>
 					</div>
 					<div class="gallery-item">
 						<img
-							src="assets/images/facilities/4-computer-laboratory.jpg"
+							src="/assets/images/facilities/4-computer-laboratory.jpg"
 							alt="Computer Laboratory"
 						/>
 					</div>
 					<div class="gallery-item">
 						<img
-							src="assets/images/facilities/5-computer-laboratory.jpg"
+							src="/assets/images/facilities/5-computer-laboratory.jpg"
 							alt="Computer Laboratory"
 						/>
 					</div>
 					<div class="gallery-item">
 						<img
-							src="assets/images/facilities/6-server-area.png"
+							src="/assets/images/facilities/6-server-area.png"
 							alt="Server Area"
 						/>
 					</div>
 					<div class="gallery-item">
 						<img
-							src="assets/images/facilities/7-library.jpg"
+							src="/assets/images/facilities/7-library.jpg"
 							alt="Library"
 						/>
 					</div>
 					<div class="gallery-item">
 						<img
-							src="assets/images/facilities/8-animation-room.jpg"
+							src="/assets/images/facilities/8-animation-room.jpg"
 							alt="Animation Room"
 						/>
 					</div>
@@ -442,43 +582,43 @@
 					<!-- Small images -->
 					<div class="gallery-item small">
 						<img
-							src="assets/images/facilities/9-lecture-room.jpg"
+							src="/assets/images/facilities/9-lecture-room.jpg"
 							alt="Lecture Room"
 						/>
 					</div>
 					<div class="gallery-item small">
 						<img
-							src="assets/images/facilities/10-audio-visual-room.jpg"
+							src="/assets/images/facilities/10-audio-visual-room.jpg"
 							alt="Audio Visual Room"
 						/>
 					</div>
 					<div class="gallery-item small">
 						<img
-							src="assets/images/facilities/11-lecture-area.jpg"
+							src="/assets/images/facilities/11-lecture-area.jpg"
 							alt="Lecture Area"
 						/>
 					</div>
 					<div class="gallery-item small">
 						<img
-							src="assets/images/facilities/12-staircase.jpg"
+							src="/assets/images/facilities/12-staircase.jpg"
 							alt="Staircase"
 						/>
 					</div>
 					<div class="gallery-item small">
 						<img
-							src="assets/images/facilities/13-hallway.jpg"
+							src="/assets/images/facilities/13-hallway.jpg"
 							alt="Hallway"
 						/>
 					</div>
 					<div class="gallery-item small">
 						<img
-							src="assets/images/facilities/14-reading-nook.jpg"
+							src="/assets/images/facilities/14-reading-nook.jpg"
 							alt="Reading Nook"
 						/>
 					</div>
 					<div class="gallery-item small">
 						<img
-							src="assets/images/facilities/15-sanitizing-station.jpg"
+							src="/assets/images/facilities/15-sanitizing-station.jpg"
 							alt="Sanitizing Station"
 						/>
 					</div>
@@ -500,30 +640,30 @@
 				<div class="partners-subsection">
 					<div class="partners-logos">
 						<img
-							src="assets/images/logos/Tesda_Logo.png"
+							src="/assets/images/logos/Tesda_Logo.png"
 							alt="TESDA"
 						/>
 						<img
-							src="assets/images/logos/DepEd_Logo.png"
+							src="/assets/images/logos/DepEd_Logo.png"
 							alt="DepEd"
 						/>
 						<img
-							src="assets/images/logos/pmmsa-tvsa.png"
+							src="/assets/images/logos/pmmsa-tvsa.png"
 							alt="PMMSA TVSA"
 						/>
 						<img
-							src="assets/images/logos/tevsa-phil.png"
+							src="/assets/images/logos/tevsa-phil.png"
 							alt="TEVSA-Phil"
 						/>
 						<img
-							src="assets/images/logos/natsa.png"
+							src="/assets/images/logos/natsa.png"
 							alt="NATSA"
 						/>
 						<img
-							src="assets/images/logos/unitvet.png"
+							src="/assets/images/logos/unitvet.png"
 							alt="UNITVET"
 						/>
-						
+
 					</div>
 				</div>
 
@@ -531,22 +671,22 @@
 					<div class="partners-logos">
 						<!-- Add partner school logos here -->
 						<img
-							src="assets/images/logos/jesus-dela-pena.png"
+							src="/assets/images/logos/jesus-dela-pena.png"
 							alt="Jesus Dela Peña Logo"
 						/>
 						<img
-							src="assets/images/logos/madis.png"
+							src="/assets/images/logos/madis.png"
 							alt="Madis Logo"
 						/>
 						<img
-							src="assets/images/logos/sto-nino-nhs.png"
+							src="/assets/images/logos/sto-nino-nhs.png"
 							alt="Sto. Niño SHS Logo"
 						/>
 						<img
-							src="assets/images/logos/san-mateo-shs.png"
+							src="/assets/images/logos/san-mateo-shs.png"
 							alt="San Mateo SHS Logo"
 						/>
-						
+
 					</div>
 				</div>
 			</div>
@@ -605,190 +745,192 @@
 
 		<!-- Testimonials Section -->
 
-		<section id="testimonials" class="testimonials">
-    <div class="container">
-        <div class="section-title">
-            <h2>Testimonials</h2>
-            <p>What our students say about their experience with us</p>
-        </div>
-        
-        <div class="testimonial-carousel-container">
-            <div class="testimonial-carousel">
-                <!-- Testimonial 1 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-fb-badge">
-                        <i class="fab fa-facebook-f"></i>
-                    </div>
-                    <div class="testimonial-content">
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p>"Very professional training center. 🔥🔥"</p>
-                        <h4>Eduardo</h4>
-                        <span>Programming (Java) NCIII Graduate</span>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 2 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-fb-badge">
-                        <i class="fab fa-facebook-f"></i>
-                    </div>
-                    <div class="testimonial-content">
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p>"Very Accommodating, Good teaching skills, Clean environment, Good equipment, Fast Internet, Highly recommend"</p>
-                        <h4>Richmond</h4>
-                        <span>Programming (Java) NCIII Graduate</span>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 3 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-fb-badge">
-                        <i class="fab fa-facebook-f"></i>
-                    </div>
-                    <div class="testimonial-content">
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <p>"Learning skills is their top priority. If you want to learn more, DATTC is the best choice."</p>
-                        <h4>George</h4>
-                        <span>Programming (Java) NCIII Graduate</span>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 4 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-fb-badge">
-                        <i class="fab fa-facebook-f"></i>
-                    </div>
-                    <div class="testimonial-content">
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p>"Good at teaching, easy to understand"</p>
-                        <h4>Dale Allen</h4>
-                        <span>Programming (Java) NCIII Graduate</span>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 5 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-fb-badge">
-                        <i class="fab fa-facebook-f"></i>
-                    </div>
-                    <div class="testimonial-content">
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p>"It is a Fun and interactive education with activities that can develop skills and experience that will always be interesting and satisfying to solve."</p>
-                        <h4>Joshua</h4>
-                        <span>Programming (Java) NCIII Graduate</span>
-                    </div>
-                </div>
+		<section
+			id="testimonials"
+			class="testimonials"
+		>
+			<div class="container">
+				<div class="section-title">
+					<h2>Testimonials</h2>
+					<p>What our students say about their experience with us</p>
+				</div>
 
-                <!-- Testimonial 6 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-fb-badge">
-                        <i class="fab fa-facebook-f"></i>
-                    </div>
-                    <div class="testimonial-content">
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p>"The trainers are knowledgeable, the facilities are modern, and the learning environment is supportive."</p>
-                        <h4>Christine</h4>
-                        <span>Programming (Java) NCIII Graduate</span>
-                    </div>
-                </div>
-                
-                <!-- Clone first testimonials for seamless infinite scroll effect -->
-                <div class="testimonial-card">
-                    <div class="testimonial-fb-badge">
-                        <i class="fab fa-facebook-f"></i>
-                    </div>
-                    <div class="testimonial-content">
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p>"Very professional training center. 🔥🔥🔥"</p>
-                        <h4>Eduardo</h4>
-                        <span>Programming (Java) NCIII Graduate</span>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-fb-badge">
-                        <i class="fab fa-facebook-f"></i>
-                    </div>
-                    <div class="testimonial-content">
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p>"Very Accommodating, Good teaching skills, Clean environment, Good equipment, Fast Internet, Highly recommend"</p>
-                        <h4>Richmond</h4>
-                        <span>Programming (Java) NCIII Graduate</span>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-fb-badge">
-                        <i class="fab fa-facebook-f"></i>
-                    </div>
-                    <div class="testimonial-content">
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <p>"Learning skills is their top priority. If you want to learn more, DATTC is the best choice."</p>
-                        <h4>George</h4>
-                        <span>Programming (Java) NCIII Graduate</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+				<div class="testimonial-carousel-container">
+					<div class="testimonial-carousel">
+						<!-- Testimonial 1 -->
+						<div class="testimonial-card">
+							<div class="testimonial-fb-badge">
+								<i class="fab fa-facebook-f"></i>
+							</div>
+							<div class="testimonial-content">
+								<div class="testimonial-rating">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+								</div>
+								<p>"Very professional training center. 🔥🔥"</p>
+								<h4>Eduardo</h4>
+								<span>Programming (Java) NCIII Graduate</span>
+							</div>
+						</div>
 
-	<!-- Contact Section -->
+						<!-- Testimonial 2 -->
+						<div class="testimonial-card">
+							<div class="testimonial-fb-badge">
+								<i class="fab fa-facebook-f"></i>
+							</div>
+							<div class="testimonial-content">
+								<div class="testimonial-rating">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+								</div>
+								<p>"Very Accommodating, Good teaching skills, Clean environment, Good equipment, Fast Internet, Highly recommend"</p>
+								<h4>Richmond</h4>
+								<span>Programming (Java) NCIII Graduate</span>
+							</div>
+						</div>
 
+						<!-- Testimonial 3 -->
+						<div class="testimonial-card">
+							<div class="testimonial-fb-badge">
+								<i class="fab fa-facebook-f"></i>
+							</div>
+							<div class="testimonial-content">
+								<div class="testimonial-rating">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star-half-alt"></i>
+								</div>
+								<p>"Learning skills is their top priority. If you want to learn more, DATTC is the best choice."</p>
+								<h4>George</h4>
+								<span>Programming (Java) NCIII Graduate</span>
+							</div>
+						</div>
+
+						<!-- Testimonial 4 -->
+						<div class="testimonial-card">
+							<div class="testimonial-fb-badge">
+								<i class="fab fa-facebook-f"></i>
+							</div>
+							<div class="testimonial-content">
+								<div class="testimonial-rating">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+								</div>
+								<p>"Good at teaching, easy to understand"</p>
+								<h4>Dale Allen</h4>
+								<span>Programming (Java) NCIII Graduate</span>
+							</div>
+						</div>
+
+						<!-- Testimonial 5 -->
+						<div class="testimonial-card">
+							<div class="testimonial-fb-badge">
+								<i class="fab fa-facebook-f"></i>
+							</div>
+							<div class="testimonial-content">
+								<div class="testimonial-rating">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+								</div>
+								<p>"It is a Fun and interactive education with activities that can develop skills and experience that will always be interesting and satisfying to solve."</p>
+								<h4>Joshua</h4>
+								<span>Programming (Java) NCIII Graduate</span>
+							</div>
+						</div>
+
+						<!-- Testimonial 6 -->
+						<div class="testimonial-card">
+							<div class="testimonial-fb-badge">
+								<i class="fab fa-facebook-f"></i>
+							</div>
+							<div class="testimonial-content">
+								<div class="testimonial-rating">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+								</div>
+								<p>"The trainers are knowledgeable, the facilities are modern, and the learning environment is supportive."</p>
+								<h4>Christine</h4>
+								<span>Programming (Java) NCIII Graduate</span>
+							</div>
+						</div>
+
+						<!-- Cloned testimonials for seamless infinite scroll -->
+						<div class="testimonial-card">
+							<div class="testimonial-fb-badge">
+								<i class="fab fa-facebook-f"></i>
+							</div>
+							<div class="testimonial-content">
+								<div class="testimonial-rating">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+								</div>
+								<p>"Very professional training center. 🔥🔥🔥"</p>
+								<h4>Eduardo</h4>
+								<span>Programming (Java) NCIII Graduate</span>
+							</div>
+						</div>
+
+						<div class="testimonial-card">
+							<div class="testimonial-fb-badge">
+								<i class="fab fa-facebook-f"></i>
+							</div>
+							<div class="testimonial-content">
+								<div class="testimonial-rating">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+								</div>
+								<p>"Very Accommodating, Good teaching skills, Clean environment, Good equipment, Fast Internet, Highly recommend"</p>
+								<h4>Richmond</h4>
+								<span>Programming (Java) NCIII Graduate</span>
+							</div>
+						</div>
+
+						<div class="testimonial-card">
+							<div class="testimonial-fb-badge">
+								<i class="fab fa-facebook-f"></i>
+							</div>
+							<div class="testimonial-content">
+								<div class="testimonial-rating">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star-half-alt"></i>
+								</div>
+								<p>"Learning skills is their top priority. If you want to learn more, DATTC is the best choice."</p>
+								<h4>George</h4>
+								<span>Programming (Java) NCIII Graduate</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Contact Section -->
 		<section
 			id="contact"
 			class="contact"
@@ -870,8 +1012,8 @@
 						</div>
 					</div>
 
-		<!-- Contact Form -->
-			<%- include('partials/contact-form') %>
+					<!-- Contact Form -->
+					<%- include('partials/contact-form') %>
 				</div>
 
 				<!-- Map Section -->

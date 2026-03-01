@@ -122,77 +122,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	}
 
-	// Smooth scroll for navbar links
-	const navLinks = document.querySelectorAll("nav a");
-	navLinks.forEach((link) => {
-		link.addEventListener("click", function (e) {
-			// Only process links that point to an ID on the page
-			const targetId = this.getAttribute("href");
-			if (targetId.startsWith("#") && targetId.length > 1) {
-				e.preventDefault();
-
-				const targetElement = document.querySelector(targetId);
-				if (targetElement) {
-					// Close mobile menu if open
-					if (navbar.classList.contains("active")) {
-						navbar.classList.remove("active");
-
-						// Add this block to ensure the icon changes back
-						if (mobileMenuBtn) {
-							const icon = mobileMenuBtn.querySelector("i");
-							if (icon) {
-								icon.classList.remove("fa-times");
-								icon.classList.add("fa-bars");
-							}
-						}
-					}
-
-					// Scroll to element with offset for header
-					const headerHeight = header.offsetHeight;
-					const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight;
-
-					window.scrollTo({
-						top: targetPosition,
-						behavior: "smooth",
-					});
-				}
-			}
-		});
-	});
-
-	// Improved smooth scroll for all navbar links
-	document.querySelectorAll("#navbar a[href^='#']").forEach((link) => {
-		link.addEventListener("click", function (e) {
-			e.preventDefault();
-			const targetId = this.getAttribute("href");
-			if (targetId === "#") return;
-
-			const targetElement = document.querySelector(targetId);
-			if (targetElement) {
-				// Close mobile menu if open
-				if (navbar && navbar.classList.contains("active")) {
-					navbar.classList.remove("active");
-
-					// Reset the hamburger icon
-					const icon = mobileMenuBtn.querySelector("i");
-					if (icon) {
-						icon.classList.remove("fa-times");
-						icon.classList.add("fa-bars");
-					}
-				}
-
-				// Scroll to element with offset for header
-				const headerHeight = document.querySelector("header").offsetHeight;
-				const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight;
-
-				window.scrollTo({
-					top: targetPosition,
-					behavior: "smooth",
-				});
-			}
-		});
-	});
-
 	// Enhanced Gallery lightbox functionality with navigation
 	const galleryItems = document.querySelectorAll(".gallery-item");
 
@@ -370,50 +299,25 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	});
 
-	// Form handling
+	// Form handling & Modal management
 	const urlParams = new URLSearchParams(window.location.search);
 	const formSubmitted = urlParams.get("formSubmitted");
 	const formError = urlParams.get("formError");
-
-	if (formSubmitted === "true") {
-		const contactForm = document.getElementById("contactForm");
-		if (contactForm) {
-			contactForm.reset();
-
-			// Scroll to the success message
-			const formMessage = document.querySelector(".form-message");
-			if (formMessage) {
-				formMessage.scrollIntoView({ behavior: "smooth", block: "center" });
-			}
-
-			// Remove the parameter from the URL without refreshing the page
-			window.history.replaceState({}, document.title, window.location.pathname);
-		}
-	}
-
-	// Modal handling
 	const successModal = document.getElementById("successModal");
 	const errorModal = document.getElementById("errorModal");
-
-	// Get all close elements
 	const closeButtons = document.querySelectorAll(".close-modal, .modal-btn");
 
-	// Show appropriate modal based on URL parameters
 	if (formSubmitted === "true") {
 		showModal(successModal);
 
-		// Reset the form
 		const contactForm = document.getElementById("contactForm");
 		if (contactForm) {
 			contactForm.reset();
 		}
 
-		// Remove the parameter from URL
 		removeUrlParameters();
 	} else if (formError === "true") {
 		showModal(errorModal);
-
-		// Remove the parameter from URL
 		removeUrlParameters();
 	}
 
@@ -454,118 +358,5 @@ document.addEventListener("DOMContentLoaded", function () {
 	// Function to remove URL parameters
 	function removeUrlParameters() {
 		window.history.replaceState({}, document.title, window.location.pathname);
-	}
-
-	// Form validation
-	const contactForm = document.getElementById("contactForm");
-	if (contactForm) {
-		// Create validation error container for each input
-		const formInputs = contactForm.querySelectorAll("input, textarea, select");
-		formInputs.forEach((input) => {
-			const errorSpan = document.createElement("span");
-			errorSpan.className = "error-message";
-			errorSpan.style.color = "#ff3860";
-			errorSpan.style.fontSize = "14px";
-			errorSpan.style.marginTop = "5px";
-			errorSpan.style.display = "none";
-			input.parentNode.insertBefore(errorSpan, input.nextSibling);
-		});
-
-		contactForm.addEventListener("submit", function (e) {
-			let isValid = true;
-			let firstError = null;
-
-			// Clear all error messages first
-			const errorMessages = contactForm.querySelectorAll(".error-message");
-			errorMessages.forEach((span) => {
-				span.style.display = "none";
-				span.textContent = "";
-			});
-
-			// Validate name (required, at least 2 characters)
-			const nameInput = contactForm.querySelector("input[name='name']");
-			if (nameInput) {
-				const errorSpan = nameInput.nextElementSibling;
-				if (!nameInput.value.trim()) {
-					errorSpan.textContent = "Name is required";
-					errorSpan.style.display = "block";
-					isValid = false;
-					firstError = firstError || nameInput;
-				} else if (nameInput.value.trim().length < 2) {
-					errorSpan.textContent = "Name must be at least 2 characters";
-					errorSpan.style.display = "block";
-					isValid = false;
-					firstError = firstError || nameInput;
-				}
-			}
-
-			// Validate email (required, valid format)
-			const emailInput = contactForm.querySelector("input[name='email']");
-			if (emailInput) {
-				const errorSpan = emailInput.nextElementSibling;
-				if (!emailInput.value.trim()) {
-					errorSpan.textContent = "Email is required";
-					errorSpan.style.display = "block";
-					isValid = false;
-					firstError = firstError || emailInput;
-				} else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
-					errorSpan.textContent = "Please enter a valid email address";
-					errorSpan.style.display = "block";
-					isValid = false;
-					firstError = firstError || emailInput;
-				}
-			}
-
-			// Validate phone (optional, but must be valid if provided)
-			const phoneInput = contactForm.querySelector("input[name='phone']");
-			if (phoneInput && phoneInput.value.trim()) {
-				const errorSpan = phoneInput.nextElementSibling;
-				// Simple validation - at least 10 digits
-				if (!/^[0-9]{10,15}$/.test(phoneInput.value.replace(/[^0-9]/g, ""))) {
-					errorSpan.textContent = "Please enter a valid phone number";
-					errorSpan.style.display = "block";
-					isValid = false;
-					firstError = firstError || phoneInput;
-				}
-			}
-
-			// Validate message (required, minimum length)
-			const messageInput = contactForm.querySelector("textarea[name='message']");
-			if (messageInput) {
-				const errorSpan = messageInput.nextElementSibling;
-				if (!messageInput.value.trim()) {
-					errorSpan.textContent = "Message is required";
-					errorSpan.style.display = "block";
-					isValid = false;
-					firstError = firstError || messageInput;
-				} else if (messageInput.value.trim().length < 10) {
-					errorSpan.textContent = "Message must be at least 10 characters";
-					errorSpan.style.display = "block";
-					isValid = false;
-					firstError = firstError || messageInput;
-				}
-			}
-
-			// Prevent form submission if validation fails
-			if (!isValid) {
-				e.preventDefault();
-				// Scroll to first error
-				if (firstError) {
-					firstError.focus();
-					firstError.scrollIntoView({ behavior: "smooth", block: "center" });
-				}
-			}
-		});
-
-		// Real-time validation as user types
-		formInputs.forEach((input) => {
-			input.addEventListener("input", function () {
-				const errorSpan = this.nextElementSibling;
-				if (errorSpan && errorSpan.classList.contains("error-message")) {
-					errorSpan.style.display = "none";
-					errorSpan.textContent = "";
-				}
-			});
-		});
 	}
 });
