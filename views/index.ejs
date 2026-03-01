@@ -179,26 +179,32 @@
 
 							<!-- SVG layer: dashed orbit ring + spokes + junction dots -->
 							<svg class="radial-svg" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg">
-								<!-- Dashed orbit circle -->
+								<!-- Static base orbit circle (faint) -->
+								<circle cx="320" cy="320" r="220"
+									fill="none" stroke="#3498db" stroke-width="1"
+									opacity="0.15"/>
+
+								<!-- Animated dashed orbit ring -->
 								<circle cx="320" cy="320" r="220"
 									fill="none" stroke="#3498db" stroke-width="1.5"
-									stroke-dasharray="6 6" opacity="0.35"/>
+									stroke-dasharray="6 6" opacity="0.45"
+									style="transform-origin:320px 320px; animation: cvOrbitSpin 18s linear infinite;"/>
 
-								<!-- Spoke lines center-rim → satellite-rim -->
-								<line x1="320" y1="320" x2="320" y2="100" stroke="#3498db" stroke-width="2" opacity="0.4"/>  <!-- top        -->
-								<line x1="320" y1="320" x2="510" y2="210" stroke="#3498db" stroke-width="2" opacity="0.4"/>  <!-- top-right  -->
-								<line x1="320" y1="320" x2="510" y2="430" stroke="#3498db" stroke-width="2" opacity="0.4"/>  <!-- bot-right  -->
-								<line x1="320" y1="320" x2="320" y2="540" stroke="#3498db" stroke-width="2" opacity="0.4"/>  <!-- bottom     -->
-								<line x1="320" y1="320" x2="130" y2="430" stroke="#3498db" stroke-width="2" opacity="0.4"/>  <!-- bot-left   -->
-								<line x1="320" y1="320" x2="130" y2="210" stroke="#3498db" stroke-width="2" opacity="0.4"/>  <!-- top-left   -->
+								<!-- Spoke lines center-rim → satellite-rim (animated draw-in) -->
+								<line x1="320" y1="320" x2="320" y2="100" stroke="#3498db" stroke-width="2" stroke-dasharray="400" stroke-dashoffset="0" opacity="0.4" style="animation: cvSpokeIn 0.8s 0.3s ease both;"/>  <!-- top        -->
+								<line x1="320" y1="320" x2="510" y2="210" stroke="#3498db" stroke-width="2" stroke-dasharray="400" stroke-dashoffset="0" opacity="0.4" style="animation: cvSpokeIn 0.8s 0.4s ease both;"/>  <!-- top-right  -->
+								<line x1="320" y1="320" x2="510" y2="430" stroke="#3498db" stroke-width="2" stroke-dasharray="400" stroke-dashoffset="0" opacity="0.4" style="animation: cvSpokeIn 0.8s 0.5s ease both;"/>  <!-- bot-right  -->
+								<line x1="320" y1="320" x2="320" y2="540" stroke="#3498db" stroke-width="2" stroke-dasharray="400" stroke-dashoffset="0" opacity="0.4" style="animation: cvSpokeIn 0.8s 0.6s ease both;"/>  <!-- bottom     -->
+								<line x1="320" y1="320" x2="130" y2="430" stroke="#3498db" stroke-width="2" stroke-dasharray="400" stroke-dashoffset="0" opacity="0.4" style="animation: cvSpokeIn 0.8s 0.5s ease both;"/>  <!-- bot-left   -->
+								<line x1="320" y1="320" x2="130" y2="210" stroke="#3498db" stroke-width="2" stroke-dasharray="400" stroke-dashoffset="0" opacity="0.4" style="animation: cvSpokeIn 0.8s 0.4s ease both;"/>  <!-- top-left   -->
 
-								<!-- Center rim junction dots -->
-								<circle cx="320" cy="200" r="5" fill="#fff" stroke="#3498db" stroke-width="2"/>
-								<circle cx="424" cy="260" r="5" fill="#fff" stroke="#3498db" stroke-width="2"/>
-								<circle cx="424" cy="380" r="5" fill="#fff" stroke="#3498db" stroke-width="2"/>
-								<circle cx="320" cy="440" r="5" fill="#fff" stroke="#3498db" stroke-width="2"/>
-								<circle cx="216" cy="380" r="5" fill="#fff" stroke="#3498db" stroke-width="2"/>
-								<circle cx="216" cy="260" r="5" fill="#fff" stroke="#3498db" stroke-width="2"/>
+								<!-- Center rim junction dots (pulsing) -->
+								<circle cx="320" cy="200" r="5" fill="#fff" stroke="#3498db" stroke-width="2" style="animation: cvDotPulse 2s 0.3s ease-in-out infinite;"/>
+								<circle cx="424" cy="260" r="5" fill="#fff" stroke="#3498db" stroke-width="2" style="animation: cvDotPulse 2s 0.5s ease-in-out infinite;"/>
+								<circle cx="424" cy="380" r="5" fill="#fff" stroke="#3498db" stroke-width="2" style="animation: cvDotPulse 2s 0.7s ease-in-out infinite;"/>
+								<circle cx="320" cy="440" r="5" fill="#fff" stroke="#3498db" stroke-width="2" style="animation: cvDotPulse 2s 0.9s ease-in-out infinite;"/>
+								<circle cx="216" cy="380" r="5" fill="#fff" stroke="#3498db" stroke-width="2" style="animation: cvDotPulse 2s 0.7s ease-in-out infinite;"/>
+								<circle cx="216" cy="260" r="5" fill="#fff" stroke="#3498db" stroke-width="2" style="animation: cvDotPulse 2s 0.5s ease-in-out infinite;"/>
 
 								<!-- Satellite rim junction dots -->
 								<circle cx="320" cy="180" r="4" fill="#fff" stroke="#2c3e50" stroke-width="1.5" opacity="0.5"/>
@@ -965,7 +971,7 @@
 							<i class="fas fa-envelope"></i>
 							<div class="contact-details">
 								<h3>Email Us</h3>
-								<a href="https://mail.google.com/mail/#compose">info@digitalartstech.edu.ph</a>
+								<a href="mailto:info@digitalartstech.edu.ph">info@digitalartstech.edu.ph</a>
 							</div>
 						</div>
 

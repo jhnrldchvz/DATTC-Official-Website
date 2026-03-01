@@ -459,7 +459,7 @@ header.scrolled {
 .why-choose-us > h2 {
 	font-size: clamp(1.7rem, 4vw, 2.2rem);
 	color: var(--primary);
-	margin-top: 25px;
+	margin-top: 70px;
 	margin-bottom: 10px;
 	line-height: 1.15;
 }
@@ -573,12 +573,13 @@ header.scrolled {
   z-index: 2;
   box-shadow: 0 0 0 12px rgba(44,62,80,0.08), 0 24px 70px rgba(44,62,80,0.35);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
-  animation: cvPopIn 0.6s cubic-bezier(0.175,0.885,0.32,1.275) both;
+  animation: cvPopIn 0.7s 0.1s cubic-bezier(0.175,0.885,0.32,1.275) both,
+             cvCenterPulse 2.8s 1.2s ease-in-out infinite;
 }
 
 .center-node:hover {
-  transform: scale(1.04);
-  box-shadow: 0 0 0 16px rgba(44, 62, 80, 0.1), 0 28px 70px rgba(44, 62, 80, 0.45);
+  transform: scale(1.05);
+  box-shadow: 0 0 0 20px rgba(52, 152, 219, 0.15), 0 28px 70px rgba(44, 62, 80, 0.45);
 }
 
 .center-node h2 {
@@ -608,8 +609,8 @@ header.scrolled {
 /* Satellite nodes */
 .sat-node {
   position: absolute;
-  width: 160px;
-  height: 160px;
+  width: 165px;
+  height: 165px;
   border-radius: 50%;
   background: #fff;
   display: flex;
@@ -622,14 +623,28 @@ header.scrolled {
   box-shadow: 0 8px 30px rgba(44, 62, 80, 0.12);
   border: 2px solid rgba(52, 152, 219, 0.15);
   cursor: default;
+  transition: transform 0.35s cubic-bezier(0.175,0.885,0.32,1.275),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+  animation: cvSatIn 0.6s cubic-bezier(0.175,0.885,0.32,1.275) both,
+             cvFloat 4s ease-in-out infinite;
 }
-/* 6 orbital positions — clockwise from top */
-.sat-0 { left: 280px; top:   10px; animation-delay: 0.15s; }
-.sat-1 { left: 500px; top:  140px; animation-delay: 0.25s; }
-.sat-2 { left: 500px; top:  400px; animation-delay: 0.35s; }
-.sat-3 { left: 280px; top:  530px; animation-delay: 0.45s; }
-.sat-4 { left:  60px; top:  400px; animation-delay: 0.35s; }
-.sat-5 { left:  60px; top:  140px; animation-delay: 0.25s; }
+
+.sat-node:hover {
+  transform: scale(1.12);
+  box-shadow: 0 16px 45px rgba(44, 62, 80, 0.2);
+  border-color: rgba(52, 152, 219, 0.45);
+  animation: cvSatIn 0.6s cubic-bezier(0.175,0.885,0.32,1.275) both; /* stop float on hover */
+  z-index: 4;
+}
+
+/* 6 orbital positions — clockwise from top, with staggered float */
+.sat-0 { left: 280px; top:   10px; animation-delay: 0.15s, 0s;    }
+.sat-1 { left: 500px; top:  140px; animation-delay: 0.25s, 0.6s;  }
+.sat-2 { left: 500px; top:  400px; animation-delay: 0.35s, 1.2s;  }
+.sat-3 { left: 280px; top:  530px; animation-delay: 0.45s, 1.8s;  }
+.sat-4 { left:  60px; top:  400px; animation-delay: 0.35s, 2.4s;  }
+.sat-5 { left:  60px; top:  140px; animation-delay: 0.25s, 3.0s;  }
 
 .sat-icon {
 	font-size: 1.35rem;
@@ -642,8 +657,13 @@ header.scrolled {
 	align-items: center;
 	justify-content: center;
 	margin-bottom: 7px;
-	transition: color 0.35s ease, background 0.35s ease;
+	transition: color 0.35s ease, background 0.35s ease, transform 0.35s ease;
 	flex-shrink: 0;
+}
+
+.sat-node:hover .sat-icon {
+	transform: rotate(15deg) scale(1.15);
+	background: rgba(52, 152, 219, 0.18);
 }
 
 .sat-title {
@@ -663,6 +683,17 @@ header.scrolled {
 	line-height: 1.45;
 	transition: color 0.35s ease;
 }
+
+/* Accent-coloured satellite hover glows */
+.sat-node.accent-blue:hover  { border-color: rgba(52,152,219,0.5); box-shadow: 0 16px 45px rgba(52,152,219,0.2); }
+.sat-node.accent-red:hover   { border-color: rgba(231,76,60,0.5);  box-shadow: 0 16px 45px rgba(231,76,60,0.2);  }
+.sat-node.accent-dark:hover  { border-color: rgba(44,62,80,0.4);   box-shadow: 0 16px 45px rgba(44,62,80,0.2);   }
+
+/* Accent icon colors */
+.sat-node.accent-red  .sat-icon { color: var(--accent);  background: rgba(231,76,60,0.1);  }
+.sat-node.accent-dark .sat-icon { color: var(--primary); background: rgba(44,62,80,0.08);  }
+.sat-node.accent-red:hover  .sat-icon { background: rgba(231,76,60,0.18);  }
+.sat-node.accent-dark:hover .sat-icon { background: rgba(44,62,80,0.15);   }
 
 /* ── MOBILE stacked card grid ── */
 .mobile-core-grid {
@@ -861,8 +892,9 @@ header.scrolled {
 
 /* ── Keyframes for core values ── */
 @keyframes cvPopIn {
-	from { opacity: 0; transform: scale(0.7); }
-	to   { opacity: 1; transform: scale(1);   }
+	0%   { opacity: 0; transform: scale(0.5); }
+	70%  { opacity: 1; transform: scale(1.07); }
+	100% { opacity: 1; transform: scale(1);   }
 }
 
 @keyframes cvSvgFade {
@@ -873,6 +905,50 @@ header.scrolled {
 @keyframes cvSlideUp {
 	from { opacity: 0; transform: translateY(18px); }
 	to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* Orbit ring slow spin */
+@keyframes cvOrbitSpin {
+	from { transform: rotate(0deg); }
+	to   { transform: rotate(360deg); }
+}
+
+/* Satellite float bob */
+@keyframes cvFloat {
+	0%,100% { transform: translateY(0px); }
+	50%     { transform: translateY(-8px); }
+}
+
+/* Satellite pop-in from scale 0 */
+@keyframes cvSatIn {
+	0%   { opacity: 0; transform: scale(0.4); }
+	75%  { opacity: 1; transform: scale(1.1); }
+	100% { opacity: 1; transform: scale(1);   }
+}
+
+/* Spoke draw-in animation */
+@keyframes cvSpokeIn {
+	from { stroke-dashoffset: 400; opacity: 0; }
+	to   { stroke-dashoffset: 0;   opacity: 0.5; }
+}
+
+/* Pulse ring glow on center node */
+@keyframes cvCenterPulse {
+	0%   { box-shadow: 0 0 0 0px rgba(52,152,219,0.45), 0 24px 70px rgba(44,62,80,0.35); }
+	70%  { box-shadow: 0 0 0 22px rgba(52,152,219,0), 0 24px 70px rgba(44,62,80,0.35); }
+	100% { box-shadow: 0 0 0 0px rgba(52,152,219,0), 0 24px 70px rgba(44,62,80,0.35); }
+}
+
+/* Junction dot twinkle */
+@keyframes cvDotPulse {
+	0%,100% { r: 5; opacity: 1;   }
+	50%     { r: 7; opacity: 0.6; }
+}
+
+/* Icon spin-in on hover */
+@keyframes cvIconSpin {
+	from { transform: rotate(-15deg) scale(0.8); }
+	to   { transform: rotate(0deg) scale(1); }
 }
 
 /* ── Responsive breakpoints for core values ── */
@@ -2149,11 +2225,12 @@ header.scrolled {
 	gap: 50px;
 	position: relative;
 	z-index: 1;
+	padding-bottom: 70px;
 }
 
 .partners-logos img {
-	height: 70px;
-	max-width: 200px;
+	height: 100px;
+	max-width: 300px;
 	object-fit: contain;
 	opacity: 1;
 	transition: all 0.4s ease;
@@ -2167,9 +2244,11 @@ header.scrolled {
 }
 
 .partners-logos img:nth-child(1) { animation: float 6s ease-in-out infinite; animation-delay: 0s;   }
-.partners-logos img:nth-child(2) { animation: float 6s ease-in-out infinite; animation-delay: 1.5s; }
-.partners-logos img:nth-child(3) { animation: float 6s ease-in-out infinite; animation-delay: 3s;   }
-.partners-logos img:nth-child(4) { animation: float 6s ease-in-out infinite; animation-delay: 4.5s; }
+.partners-logos img:nth-child(2) { animation: float 6s ease-in-out infinite; animation-delay: 1s; }
+.partners-logos img:nth-child(3) { animation: float 6s ease-in-out infinite; animation-delay: 2s;   }
+.partners-logos img:nth-child(4) { animation: float 6s ease-in-out infinite; animation-delay: 3s; }
+.partners-logos img:nth-child(5) { animation: float 6s ease-in-out infinite; animation-delay: 4s;   }
+.partners-logos img:nth-child(6) { animation: float 6s ease-in-out infinite; animation-delay: 5s; }
 
 .partner-card {
 	position: relative;
@@ -2872,4 +2951,95 @@ header.scrolled {
   .testimonial-author {
     padding-top: 10px;
   }
+}
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+
+/* content-visibility: auto — skip rendering off-screen sections */
+.about,
+.academics,
+.trainers,
+.facilities,
+.partners,
+.admissions,
+.testimonials,
+.contact {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 600px;
+}
+
+/* Intersection Observer fade-in animation */
+.observe-fade {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  will-change: opacity, transform;
+}
+
+.observe-fade.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  will-change: auto; /* release GPU layer after animation */
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .observe-fade {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero-video {
+    /* Pause the video for users preferring less motion */
+    animation: none !important;
+  }
+}
+
+/* Optimize testimonial carousel GPU compositing */
+.testimonial-carousel {
+  transform: translateZ(0);   /* promote to own layer */
+  backface-visibility: hidden;
+}
+
+/* Remove expensive will-change on elements that don't need it at rest */
+.hero-video,
+.hero-content {
+  will-change: auto;
+}
+
+/* Only apply will-change on active parallax/scroll (controlled via JS) */
+.hero-video.is-parallax,
+.hero-content.is-parallax {
+  will-change: transform;
+}
+
+/* Lazy-loaded images: prevent layout shift by reserving space */
+img[loading="lazy"] {
+  background-color: #f0f0f0;   /* placeholder color while loading */
+}
+
+/* Smooth image reveal once loaded */
+img {
+  transition: opacity 0.3s ease;
+}
+
+img[data-loaded="false"] {
+  opacity: 0;
+}
+
+/* Map container placeholder while iframe lazy-loads */
+.map iframe[src="about:blank"] {
+  background: #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
