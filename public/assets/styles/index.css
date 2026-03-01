@@ -31,6 +31,13 @@
 	--dark: #2c3e50;
 	--scroll-behavior: smooth;
 	--content-scale: 0.9;
+	/* Font scale — used across components */
+	--font-xs:  0.75rem;
+	--font-sm:  0.875rem;
+	--font-md:  1rem;
+	--font-lg:  1.125rem;
+	--font-xl:  1.25rem;
+	--font-2xl: 1.5rem;
 }
 
 /* ===== 2. BASE STYLES ===== */
@@ -488,6 +495,11 @@ header.scrolled {
 	position: relative;
 	z-index: 1;
 	overflow: hidden;
+	/* Explicit column so mobile flex-row override works cleanly */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
 }
 
 .core-value-card::before {
@@ -508,6 +520,7 @@ header.scrolled {
 .core-value-icon {
 	width: 70px;
 	height: 70px;
+	min-width: 70px;
 	margin: 0 auto 12px;
 	display: flex;
 	align-items: center;
@@ -3042,4 +3055,555 @@ img[data-loaded="false"] {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+/* ============================================================
+   MOBILE LAYOUT — FULL OVERHAUL  (max-width: 768px)
+   ============================================================ */
+
+/* ─── Global ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  section { padding: 48px 0; }
+
+  .container {
+    width: 92%;
+    padding: 0 16px;
+  }
+
+  .section-title h2 {
+    font-size: 1.6rem;
+    line-height: 1.2;
+  }
+
+  .section-title p { font-size: 0.875rem; }
+
+  .btn {
+    padding: 12px 20px;
+    font-size: 0.875rem;
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+
+  /* Prevent iOS input zoom */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+
+  /* Prevent long words breaking layout */
+  p, h1, h2, h3, h4, h5, span {
+    overflow-wrap: break-word;
+    word-break: normal;        /* NOT break-all — that breaks headings */
+  }
+}
+
+/* ─── HERO ────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero {
+    height: 100svh;
+    min-height: 520px;
+    margin-top: 0;
+    padding-top: 0;
+    align-items: flex-end;
+    padding-bottom: 56px;
+  }
+
+  .hero-overlay {
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,0.82) 0%,
+      rgba(0,0,0,0.55) 50%,
+      rgba(0,0,0,0.28) 100%
+    );
+  }
+
+  .hero-content {
+    padding: 0 20px;
+    text-align: left;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero h1 {
+    font-size: 1.75rem;
+    line-height: 1.25;
+    letter-spacing: -0.3px;
+    margin-bottom: 12px;
+    word-break: normal;
+  }
+
+  .hero p {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .hero-btns {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .hero-btns .btn {
+    flex: 1 1 140px;
+    max-width: 180px;
+    text-align: center;
+    padding: 12px 16px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero h1 { font-size: 1.5rem; }
+  .hero-btns .btn { flex: 1 1 100%; max-width: 100%; }
+}
+
+/* ─── ABOUT SECTION ───────────────────────────────────────── */
+@media (max-width: 768px) {
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .about-image {
+    max-width: 100%;
+    margin: 0;
+    border-radius: 10px;
+  }
+
+  .about-image img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .about-text h3 { font-size: 0.78rem; letter-spacing: 0.05em; }
+  .about-text h2 { font-size: 1.45rem; line-height: 1.2; }
+  .about-text p  { font-size: 0.875rem; line-height: 1.65; }
+}
+
+/* ─── WHY CHOOSE US headings ──────────────────────────────── */
+@media (max-width: 768px) {
+  .why-choose-us { padding: 24px 0 16px; }
+
+  .why-choose-us > h2 {
+    font-size: 1.5rem;
+    margin-top: 36px;
+    word-break: normal;
+  }
+
+  .why-choose-us > p {
+    font-size: 0.875rem;
+    margin-bottom: 20px;
+  }
+}
+
+/* ─── CORE VALUE CARDS (the main bug fix) ─────────────────── */
+/*
+ * ROOT CAUSE: cards were set to flex-row with the icon beside
+ * a tiny text column — crushing h2 into a vertical letter stack.
+ * FIX: cards stay COLUMN on mobile, but use a horizontal icon+text
+ * row ONLY on medium phones (480px+) with proper min-width.
+ */
+@media (max-width: 768px) {
+
+  .core-values-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  /* ── Single-column card: column-centered, clean ── */
+  .core-value-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px 16px;
+    gap: 0;
+  }
+
+  .core-value-icon {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    margin: 0 auto 10px;
+  }
+
+  .core-value-card h2 {
+    font-size: 1.05rem;          /* explicit px fallback; var() was undefined */
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 6px;
+    white-space: normal;         /* allow wrapping but not letter-by-letter */
+    word-break: normal;
+    overflow-wrap: normal;
+    width: 100%;
+  }
+
+  .core-value-card p {
+    font-size: 0.855rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+}
+
+/* Two columns when there's enough horizontal space */
+@media (min-width: 480px) and (max-width: 768px) {
+  .core-values-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ─── PROGRAM TABS ────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .program-tabs {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 8px;
+    padding-bottom: 4px;
+    justify-content: flex-start;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    margin-bottom: 20px;
+  }
+
+  .program-tabs::-webkit-scrollbar { display: none; }
+
+  .program-tab {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 10px 16px;
+    font-size: 0.8rem;
+    min-height: 44px;
+    border-radius: 6px;
+    width: auto;
+  }
+
+  .program-details {
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-radius: 10px;
+  }
+
+  .program-image { max-height: 200px; min-height: 160px; }
+  .program-image img { height: 200px; object-fit: cover; }
+
+  .program-info { padding: 20px 16px; }
+  .program-info h3 { font-size: 1.15rem; }
+  .program-info p  { font-size: 0.855rem; }
+
+  .program-features {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .program-feature span { font-size: 0.78rem; }
+}
+
+@media (max-width: 400px) {
+  .program-features { grid-template-columns: 1fr; }
+}
+
+/* ─── TRAINERS ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .trainers { padding: 48px 0; }
+
+  .trainer-content,
+  .trainer-content.reverse {
+    grid-template-columns: 1fr;
+    direction: ltr;
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+
+  .trainer-content .trainer-image,
+  .trainer-content.reverse .trainer-image { order: -1; }
+
+  .trainer-image {
+    max-width: 100%;
+    max-height: 240px;
+    border-radius: 10px;
+    margin: 0;
+  }
+
+  .trainer-image img { height: 240px; object-fit: cover; }
+
+  .trainer-text h2 { font-size: 1.4rem; line-height: 1.25; }
+  .trainer-text h3 { font-size: 0.8rem; }
+  .trainer-text p  { font-size: 0.855rem; line-height: 1.65; }
+}
+
+/* ─── FACILITIES ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .facilities { padding: 48px 0; }
+
+  .facilities-gallery {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 140px;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .gallery-item,
+  .gallery-item.featured,
+  .gallery-item.small {
+    grid-column: span 1;
+    grid-row: span 1;
+    border-radius: 8px;
+  }
+
+  .gallery-item.featured { grid-row: span 2; }
+
+  /* No hover translate on touch */
+  @media (hover: none) {
+    .gallery-item:hover { transform: none; }
+    .gallery-item:hover img { transform: none; }
+  }
+
+  .lightbox-close { top: 12px; right: 12px; width: 40px; height: 40px; font-size: 20px; }
+  .lightbox-prev  { left: 10px; width: 38px; height: 38px; font-size: 18px; }
+  .lightbox-next  { right: 10px; width: 38px; height: 38px; font-size: 18px; }
+}
+
+/* ─── ADMISSIONS STEPS ────────────────────────────────────── */
+@media (max-width: 768px) {
+  .admissions { padding: 48px 0; }
+
+  .enrollment-steps {
+    padding: 24px 16px;
+    margin-top: 32px;
+    border-radius: 12px;
+  }
+
+  .steps-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .steps-container::before { display: none; }
+
+  .step-item {
+    padding: 24px 14px 20px;
+    min-height: 0;
+    border-radius: 10px;
+  }
+
+  .step-number {
+    width: 56px;
+    height: 56px;
+    font-size: 1.4rem;
+    margin-bottom: 14px;
+  }
+
+  .step-item h4 { font-size: 1rem; margin-bottom: 6px; }
+  .step-item p  { font-size: 0.82rem; line-height: 1.5; }
+
+  .admissions-cta { margin-top: 28px; }
+
+  .request-info-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 400px) {
+  .steps-container { grid-template-columns: 1fr; }
+}
+
+/* ─── PARTNERS ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .partners { padding: 48px 0; }
+  .partners .section-title { margin-bottom: 28px; }
+
+  .partners-logos {
+    gap: 20px 28px;
+    padding-bottom: 32px;
+  }
+
+  .partners-logos img {
+    height: 44px;
+    max-width: 110px;
+    animation: none !important; /* save battery on mobile */
+  }
+}
+
+/* ─── TESTIMONIALS ────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .testimonials { padding: 48px 0; }
+  .testimonials .section-title { margin-bottom: 28px; }
+
+  .testimonial-carousel-container::before,
+  .testimonial-carousel-container::after { width: 28px; }
+
+  .testimonial-card {
+    flex: 0 0 260px;
+    min-width: 260px;
+    padding: 20px 16px;
+    margin: 6px 8px;
+    border-radius: 12px;
+  }
+
+  .testimonial-content p {
+    font-size: 0.875rem;
+    line-height: 1.55;
+    padding-left: 10px;
+  }
+
+  .testimonial-content h4  { font-size: 0.9rem; }
+  .testimonial-content span { font-size: 0.75rem; }
+  .testimonial-rating { margin-bottom: 12px; }
+}
+
+@media (max-width: 400px) {
+  .testimonial-card {
+    flex: 0 0 230px;
+    min-width: 230px;
+    padding: 16px 14px;
+  }
+}
+
+/* ─── CONTACT ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .contact { padding: 48px 0; }
+
+  .contact-container {
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+
+  .contact-info,
+  .contact-form-container {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .contact-card {
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    align-items: flex-start;
+  }
+
+  .contact-card i {
+    font-size: 18px;
+    margin-right: 12px;
+    margin-top: 3px;
+    width: 24px;
+  }
+
+  .contact-details h3 { font-size: 0.95rem; }
+  .contact-details p,
+  .contact-details a  { font-size: 0.855rem; word-break: break-word; }
+
+  .social-media { margin-top: 16px; }
+  .social-media h3 { font-size: 0.95rem; margin-bottom: 10px; }
+
+  .social-icons a {
+    width: 42px;
+    height: 42px;
+    line-height: 42px;
+    margin-right: 8px;
+  }
+
+  .contact-form-container {
+    padding: 20px 16px;
+    border-radius: 10px;
+  }
+
+  .contact-form-container h3 { font-size: 1.2rem; }
+  .contact-form-container p  { font-size: 0.855rem; margin-bottom: 16px; }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 0;
+  }
+
+  .form-group { margin-bottom: 12px; }
+  .form-group label { font-size: 0.855rem; margin-bottom: 5px; }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 11px 12px;
+    border-radius: 6px;
+    min-height: 44px;
+  }
+
+  .form-group textarea { min-height: 100px; }
+
+  .submit-btn {
+    font-size: 0.9rem;
+    padding: 14px 20px;
+    min-height: 48px;
+    border-radius: 6px;
+  }
+
+  .map-container { margin-top: 32px; }
+  .map-container h3 { font-size: 1.1rem; margin-bottom: 14px; }
+  .map { border-radius: 8px; }
+  .map iframe { height: 280px; }
+}
+
+/* ─── MODAL ───────────────────────────────────────────────── */
+@media (max-width: 576px) {
+  .modal-content {
+    margin: 8vh auto;
+    padding: 24px 20px;
+    width: 92%;
+    border-radius: 12px;
+  }
+
+  .modal-icon i { font-size: 48px; }
+  .modal-content h3 { font-size: 1.25rem; }
+  .modal-content p  { font-size: 0.875rem; margin-bottom: 20px; }
+  .close-modal { font-size: 24px; top: 12px; right: 14px; }
+}
+
+/* ─── Touch device: disable stuck hover states ────────────── */
+@media (hover: none) and (max-width: 768px) {
+  .core-value-card:hover,
+  .step-item:hover,
+  .testimonial-card:hover,
+  .btn:hover {
+    transform: none;
+    box-shadow: inherit;
+  }
+
+  .btn:active { transform: scale(0.97); transition: transform 0.1s; }
+
+  a, button {
+    -webkit-tap-highlight-color: rgba(52, 152, 219, 0.15);
+    touch-action: manipulation;
+  }
+}
+
+/* ─── Extra-small: < 360px ────────────────────────────────── */
+@media (max-width: 360px) {
+  .container { width: 96%; padding: 0 10px; }
+  .section-title h2 { font-size: 1.4rem; }
+  .hero h1 { font-size: 1.35rem; }
+  .about-text h2, .trainer-text h2 { font-size: 1.3rem; }
+
+  .enrollment-steps { padding: 20px 12px; }
+  .step-number { width: 48px; height: 48px; font-size: 1.2rem; }
+
+  .facilities-gallery {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 180px;
+  }
+
+  .gallery-item.featured { grid-row: span 1; }
 }
