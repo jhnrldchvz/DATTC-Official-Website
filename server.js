@@ -124,7 +124,7 @@ app.post("/submit-contact", contactFormLimiter, async (req, res) => {
 
         // Send confirmation email to the user
         const confirmationEmail = {
-            from: process.env.EMAIL_USER,
+            from: "Digital Arts Technology Training Center Inc. <" + process.env.EMAIL_USER + ">",
             to: email,
             subject: "Thank you for contacting Digital Arts Technology Training Center Inc.",
             html: `
