@@ -128,7 +128,6 @@ app.post("/submit-contact", contactFormLimiter, async (req, res) => {
             to: email,
             subject: "Thank you for contacting Digital Arts Technology Training Center Inc.",
             html: `
-                <h2>Thank You for Contacting Us</h2>
                 <p>Dear ${name},</p>
                 <p>We have received your inquiry about our ${program || "programs"} and will get back to you shortly.</p>
                 <p>Here's a copy of the information you submitted:</p>
