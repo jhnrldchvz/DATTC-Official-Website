@@ -122,26 +122,48 @@ app.post("/submit-contact", contactFormLimiter, async (req, res) => {
             `,
         };
 
-        // Send confirmation email to the user
-        const confirmationEmail = {
-            from: "Digital Arts Technology Training Center Inc. <" + process.env.EMAIL_USER + ">",
-            to: email,
-            subject: "Thank you for contacting Digital Arts Technology Training Center Inc.",
-            html: `
-                <p>Dear ${name},</p>
-                <p>We have received your inquiry about our ${program || "programs"} and will get back to you shortly.</p>
-                <p>Here's a copy of the information you submitted:</p>
-                <p><strong>Name:</strong> ${name}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Phone:</strong> ${phone}</p>
-                <p><strong>Program of Interest:</strong> ${program || "Not specified"}</p>
-                <p><strong>Message:</strong></p>
-                <p>${message}</p>
-                <br>
-                <p>Best regards,</p>
-                <p>The Digital Arts Technology Training Center Team</p>
-            `,
-        };
+// Helper to prevent HTML injection from user input
+function escapeHtml(str = "") {
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+// Send confirmation email to the user
+const confirmationEmail = {
+    from: `"Digital Arts Technology Training Center Inc." <${process.env.EMAIL_USER}>`,
+    to: email,
+    subject: "Thank you for contacting Digital Arts Technology Training Center Inc.",
+    html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+            <div style="background-color: #1a1a1a; padding: 20px; text-align: center;">
+                <h1 style="color: #ffffff; margin: 0; font-size: 20px;">Digital Arts Technology Training Center Inc.</h1>
+            </div>
+            <div style="padding: 24px; border: 1px solid #eee; border-top: none;">
+                <p>Dear ${escapeHtml(name)},</p>
+                <p>Thank you for reaching out! We've received your inquiry about <strong>${escapeHtml(program || "our programs")}</strong> and will get back to you shortly.</p>
+
+                <div style="background-color: #f7f7f7; border-radius: 6px; padding: 16px; margin: 20px 0;">
+                    <h3 style="margin-top: 0; font-size: 15px; color: #555;">Your submitted details</h3>
+                    <p style="margin: 6px 0;"><strong>Name:</strong> ${escapeHtml(name)}</p>
+                    <p style="margin: 6px 0;"><strong>Email:</strong> ${escapeHtml(email)}</p>
+                    <p style="margin: 6px 0;"><strong>Phone:</strong> ${escapeHtml(phone)}</p>
+                    <p style="margin: 6px 0;"><strong>Program of Interest:</strong> ${escapeHtml(program || "Not specified")}</p>
+                    <p style="margin: 6px 0;"><strong>Message:</strong><br>${escapeHtml(message).replace(/\n/g, "<br>")}</p>
+                </div>
+
+                <p>If you have any urgent questions, feel free to reply directly to this email.</p>
+                <p style="margin-top: 24px;">Best regards,<br><strong>The Digital Arts Technology Training Center Team</strong></p>
+            </div>
+            <div style="text-align: center; padding: 16px; font-size: 12px; color: #999;">
+                <p>Digital Arts Technology Training Center Inc. &middot; Marikina City, Philippines</p>
+            </div>
+        </div>
+    `,
+};
 
         // Send both emails
         await transporter.sendMail(mailOptions);
