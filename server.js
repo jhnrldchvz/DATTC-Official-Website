@@ -107,20 +107,47 @@ app.post("/submit-contact", contactFormLimiter, async (req, res) => {
         console.log("reCAPTCHA verification successful, sending emails...");
 
         // Email content
-        const mailOptions = {
-            from: process.env.EMAIL_USER,
-            to: process.env.RECIPIENT_EMAIL,
-            subject: `New Contact Form Submission from ${name}`,
-            html: `
-                <h2>New Contact Form Submission</h2>
-                <p><strong>Name:</strong> ${name}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Phone:</strong> ${phone}</p>
-                <p><strong>Program of Interest:</strong> ${program || "Not specified"}</p>
-                <p><strong>Message:</strong></p>
-                <p>${message}</p>
-            `,
-        };
+// Email content — internal notification
+const mailOptions = {
+    from: `"DATTC Website" <${process.env.EMAIL_USER}>`,
+    to: process.env.RECIPIENT_EMAIL,
+    replyTo: email, // lets you hit "Reply" and respond directly to the inquirer
+    subject: `Inquiry from ${name} — ${program || "General Inquiry"}`,
+    html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
+            <div style="background-color: #1a1a1a; padding: 16px 20px;">
+                <h2 style="color: #ffffff; margin: 0; font-size: 18px;">New Website Inquiry</h2>
+            </div>
+            <div style="padding: 20px; border: 1px solid #eee; border-top: none;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                        <td style="padding: 6px 0; font-weight: bold; width: 140px; vertical-align: top;">Name</td>
+                        <td style="padding: 6px 0;">${escapeHtml(name)}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 6px 0; font-weight: bold; vertical-align: top;">Email</td>
+                        <td style="padding: 6px 0;"><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 6px 0; font-weight: bold; vertical-align: top;">Phone</td>
+                        <td style="padding: 6px 0;">${escapeHtml(phone)}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 6px 0; font-weight: bold; vertical-align: top;">Program</td>
+                        <td style="padding: 6px 0;">${escapeHtml(program || "Not specified")}</td>
+                    </tr>
+                </table>
+                <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #eee;">
+                    <p style="font-weight: bold; margin-bottom: 6px;">Message</p>
+                    <p style="white-space: pre-line; margin: 0;">${escapeHtml(message)}</p>
+                </div>
+            </div>
+            <div style="text-align: center; padding: 12px; font-size: 11px; color: #999;">
+                <p>Submitted via digitalartstech.edu.ph contact form</p>
+            </div>
+        </div>
+    `,
+};
 
 // Helper to prevent HTML injection from user input
 function escapeHtml(str = "") {
