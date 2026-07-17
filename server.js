@@ -106,10 +106,9 @@ app.post("/submit-contact", contactFormLimiter, async (req, res) => {
 
         console.log("reCAPTCHA verification successful, sending emails...");
 
-        // Email content
 // Email content — internal notification
 const mailOptions = {
-    from: `"DATTC Website" <${process.env.EMAIL_USER}>`,
+    from: `"DATTCI Website" <${process.env.EMAIL_USER}>`,
     to: process.env.RECIPIENT_EMAIL,
     replyTo: email, // lets you hit "Reply" and respond directly to the inquirer
     subject: `Inquiry from ${name} — ${program || "General Inquiry"}`,
